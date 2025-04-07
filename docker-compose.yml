@@ -1,0 +1,184 @@
+version: "3.9"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/radarr:/config
+      - /mnt/media/Films:/movies
+      - /mnt/media/Downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/sonarr:/config
+      - /mnt/media/Series:/tv
+      - /mnt/media/Downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/lidarr:/config
+      - /mnt/media/Muziek:/music
+      - /mnt/media/Downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/readarr:/config
+      - /mnt/media/Boeken:/books
+      - /mnt/media/Downloads:/downloads
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/bazarr:/config
+      - /mnt/media/Series:/tv
+      - /mnt/media/Films:/movies
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/sabnzbd:/config
+      - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/transmission:/config
+      - /mnt/media/Downloads:/downloads
+    ports:
+      - 9091:9091
+    restart: unless-stopped
+
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/jellyfin:/config
+      - /mnt/media/Films:/movies
+      - /mnt/media/Series:/tv
+      - /mnt/media/Muziek:/music
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    user: "1000:1000"
+    volumes:
+      - /mnt/media:/srv
+    ports:
+      - 8081:80
+    restart: unless-stopped
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --cleanup
+    restart: unless-stopped
+
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    ports:
+      - 9999:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - /mnt/media/config/overseerr:/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
+
+  notifiarr:
+    image: golift/notifiarr
+    container_name: notifiarr
+    environment:
+      - TZ=Europe/Amsterdam
+      - NARR_API_KEY=changeme
+    volumes:
+      - /mnt/media/config/notifiarr:/app/config
+    restart: unless-stopped
