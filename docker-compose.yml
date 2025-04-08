@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 networks:
@@ -163,6 +164,20 @@ services:
     networks:
       - media-net
 
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Amsterdam
+    ports:
+      - 5056:5055
+    volumes:
+      - /mnt/media/config/jellyseerr:/app/config
+    restart: unless-stopped
+    networks:
+      - media-net
+
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
@@ -192,22 +207,6 @@ services:
       - 9999:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
-    networks:
-      - media-net
-
-  overseerr:
-    image: lscr.io/linuxserver/overseerr:latest
-    container_name: overseerr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-    volumes:
-      - /mnt/media/config/overseerr:/config
-      - /mnt/media/complete:/complete
-    ports:
-      - 5055:5055
     restart: unless-stopped
     networks:
       - media-net
