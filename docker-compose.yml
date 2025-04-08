@@ -32,7 +32,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /mnt/media/config/sonarr:/config
-      - /mnt/media/Series:/tv
+      - /mnt/media/Series:/series
       - /mnt/media/Downloads:/downloads
       - /mnt/media/complete:/complete
     ports:
@@ -86,7 +86,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /mnt/media/config/bazarr:/config
-      - /mnt/media/Series:/tv
+      - /mnt/media/Series:/series
       - /mnt/media/Films:/movies
       - /mnt/media/complete:/complete
     ports:
@@ -155,7 +155,7 @@ services:
     volumes:
       - /mnt/media/config/jellyfin:/config
       - /mnt/media/Films:/movies
-      - /mnt/media/Series:/tv
+      - /mnt/media/Series:/series
       - /mnt/media/Muziek:/music
       - /mnt/media/complete:/complete
     ports:
