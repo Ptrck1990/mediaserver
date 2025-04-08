@@ -216,7 +216,7 @@ services:
     container_name: notifiarr
     environment:
       - TZ=Europe/Amsterdam
-      - NARR_API_KEY=changeme
+      - NARR_API_KEY=b24ee4c1-970f-4749-a2db-211aa3f069d2
     volumes:
       - /mnt/media/config/notifiarr:/app/config
       - /mnt/media/complete:/complete
