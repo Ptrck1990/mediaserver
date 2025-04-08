@@ -15,6 +15,7 @@ services:
       - /mnt/media/config/radarr:/config
       - /mnt/media/Films:/movies
       - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -32,6 +33,7 @@ services:
       - /mnt/media/config/sonarr:/config
       - /mnt/media/Series:/tv
       - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -49,6 +51,7 @@ services:
       - /mnt/media/config/lidarr:/config
       - /mnt/media/Muziek:/music
       - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
     ports:
       - 8686:8686
     restart: unless-stopped
@@ -66,6 +69,7 @@ services:
       - /mnt/media/config/readarr:/config
       - /mnt/media/Boeken:/books
       - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
     ports:
       - 8787:8787
     restart: unless-stopped
@@ -83,6 +87,7 @@ services:
       - /mnt/media/config/bazarr:/config
       - /mnt/media/Series:/tv
       - /mnt/media/Films:/movies
+      - /mnt/media/complete:/complete
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -98,6 +103,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /mnt/media/config/prowlarr:/config
+      - /mnt/media/complete:/complete
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -131,6 +137,7 @@ services:
     volumes:
       - /mnt/media/config/transmission:/config
       - /mnt/media/Downloads:/downloads
+      - /mnt/media/complete:/complete
     ports:
       - 9091:9091
     restart: unless-stopped
@@ -149,6 +156,7 @@ services:
       - /mnt/media/Films:/movies
       - /mnt/media/Series:/tv
       - /mnt/media/Muziek:/music
+      - /mnt/media/complete:/complete
     ports:
       - 8096:8096
     restart: unless-stopped
@@ -197,6 +205,7 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - /mnt/media/config/overseerr:/config
+      - /mnt/media/complete:/complete
     ports:
       - 5055:5055
     restart: unless-stopped
@@ -211,6 +220,7 @@ services:
       - NARR_API_KEY=changeme
     volumes:
       - /mnt/media/config/notifiarr:/app/config
+      - /mnt/media/complete:/complete
     restart: unless-stopped
     networks:
       - media-net
