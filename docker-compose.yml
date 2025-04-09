@@ -179,7 +179,7 @@ services:
       - media-net
 
   filebrowser:
-        image: filebrowser/filebrowser:latest
+    image: filebrowser/filebrowser:latest
     container_name: filebrowser
     user: "1000:1000"
     environment:
@@ -192,6 +192,7 @@ services:
     restart: unless-stopped
     networks:
       - media-net
+
 
   watchtower:
     image: containrrr/watchtower:latest
