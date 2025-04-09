@@ -184,6 +184,7 @@ services:
     user: "1000:1000"
     volumes:
       - /mnt/media:/srv
+      - /mnt/media/config/filebrowser:/database
     ports:
       - 8081:80
     restart: unless-stopped
