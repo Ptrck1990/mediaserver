@@ -1,9 +1,4 @@
-
 version: "3.9"
-
-networks:
-  media-net:
-
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -214,3 +209,6 @@ services:
     restart: unless-stopped
     networks:
       - media-net
+      
+networks:
+  media-net:
