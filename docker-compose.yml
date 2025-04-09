@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -173,6 +174,19 @@ services:
     networks:
       - media-net
 
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    ports:
+      - 3000:80
+    volumes:
+      - /mnt/media/config/dashy:/app/user-data
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - media-net
+
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
@@ -187,7 +201,6 @@ services:
     restart: unless-stopped
     networks:
       - media-net
-
 
   watchtower:
     image: containrrr/watchtower:latest
@@ -209,6 +222,6 @@ services:
     restart: unless-stopped
     networks:
       - media-net
-      
+
 networks:
   media-net:
