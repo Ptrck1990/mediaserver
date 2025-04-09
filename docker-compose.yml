@@ -179,9 +179,11 @@ services:
       - media-net
 
   filebrowser:
-    image: filebrowser/filebrowser:latest
+        image: filebrowser/filebrowser:latest
     container_name: filebrowser
     user: "1000:1000"
+    environment:
+      - FB_DATABASE=/database/filebrowser.db
     volumes:
       - /mnt/media:/srv
       - /mnt/media/config/filebrowser:/database
