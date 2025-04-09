@@ -178,7 +178,7 @@ services:
     image: lissy93/dashy:latest
     container_name: dashy
     ports:
-      - 3000:80
+      - 3100:80
     environment:
       - NODE_ENV=production
     restart: unless-stopped
