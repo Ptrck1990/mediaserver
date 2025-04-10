@@ -209,6 +209,19 @@ services:
     restart: unless-stopped
     networks:
       - media-net
+      
+      dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    ports:
+      - "3100:80"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /mnt/media/config/dashy:/app/user-data
+    restart: unless-stopped
+    networks:
+      - media-net
 
 networks:
   media-net:
