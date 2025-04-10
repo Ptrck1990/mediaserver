@@ -174,17 +174,6 @@ services:
     networks:
       - media-net
 
-  dashy:
-    image: lissy93/dashy:latest
-    container_name: dashy
-    ports:
-      - 3100:80
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
-    networks:
-      - media-net
-
   filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
