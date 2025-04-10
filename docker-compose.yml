@@ -210,7 +210,7 @@ services:
     networks:
       - media-net
       
-      dashy:
+  dashy:
     image: lissy93/dashy:latest
     container_name: dashy
     ports:
