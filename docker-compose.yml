@@ -223,7 +223,7 @@ services:
       - PGID=1000
       - TZ=Europe/Amsterdam
     ports:
-      - 3030:80
+      - 3030:8080
     volumes:
       - /mnt/media/config/glance:/app/config
       - /mnt/media/config/icons:/app/public/icons
