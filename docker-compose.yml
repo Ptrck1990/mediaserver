@@ -215,21 +215,32 @@ services:
     networks:
       - media-net
       
-  dashy:
-    image: lissy93/dashy:latest
-    container_name: dashy
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
     ports:
-      - "3100:8080"
+      - 3000:3000
+    volumes:
+      - /mnt/media/config/homepage:/app/config  # Config map
+      - /var/run/docker.sock:/var/run/docker.sock  # Voor container info
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-      - NODE_ENV=production
-    volumes:
-      - /mnt/media/config/dashy:/app/user-data
     restart: unless-stopped
     networks:
       - media-net
+  
+    homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - "3000:3000"
+    volumes:
+      - /mnt/media/config/homepage:/app/config           # <-- Config files
+      - /var/run/docker.sock:/var/run/docker.sock        # <-- Voor containerstatus
+      - /mnt/media/icons:/app/public/icons               # <-- Iconenmap (optioneel)
+    restart: unless-stopped  
 
 networks:
   media-net:
