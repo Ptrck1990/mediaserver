@@ -215,32 +215,22 @@ services:
     networks:
       - media-net
       
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    ports:
-      - 3000:3000
-    volumes:
-      - /mnt/media/config/homepage:/app/config  # Config map
-      - /var/run/docker.sock:/var/run/docker.sock  # Voor container info
+  glance:
+    image: glanceapp/glance:latest
+    container_name: glance
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
+    ports:
+      - 3030:80
+    volumes:
+      - /mnt/media/config/glance:/app/data
+      - /mnt/media/config/icons:/app/public/icons
     restart: unless-stopped
     networks:
       - media-net
   
-    homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
-    ports:
-      - "3000:3000"
-    volumes:
-      - /mnt/media/config/homepage:/app/config           # <-- Config files
-      - /var/run/docker.sock:/var/run/docker.sock        # <-- Voor containerstatus
-      - /mnt/media/icons:/app/public/icons               # <-- Iconenmap (optioneel)
-    restart: unless-stopped  
-
+  
 networks:
   media-net:
