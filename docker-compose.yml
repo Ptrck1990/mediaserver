@@ -164,10 +164,12 @@ services:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
     environment:
+      - PUID=1000
+      - PGID=1000
       - LOG_LEVEL=debug
       - TZ=Europe/Amsterdam
     ports:
-      - 5056:5055
+      - 5055:5055
     volumes:
       - /mnt/media/config/jellyseerr:/app/config
     restart: unless-stopped
@@ -179,6 +181,9 @@ services:
     container_name: filebrowser
     user: "1000:1000"
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
       - FB_DATABASE=/database/filebrowser.db
     volumes:
       - /mnt/media:/srv
@@ -215,7 +220,10 @@ services:
     container_name: dashy
     ports:
       - "3100:80"
-    environment:
+     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
       - NODE_ENV=production
     volumes:
       - /mnt/media/config/dashy:/app/user-data
