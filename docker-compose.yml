@@ -215,7 +215,7 @@ services:
     networks:
       - media-net 
       
-    homarr:
+  homarr:
     image: ghcr.io/ajnart/homarr:latest
     container_name: homarr
     environment:
