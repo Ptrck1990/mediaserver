@@ -230,6 +230,21 @@ services:
     restart: unless-stopped
     networks:
       - media-net
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: unless-stopped
+    ports:
+      - 61208:61208
+    environment:
+      - TZ=Europe/Amsterdam
+    command: glances -w
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    networks:
+      - media-net
   
 networks:
   media-net:
