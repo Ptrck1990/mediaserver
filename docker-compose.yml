@@ -214,23 +214,22 @@ services:
     restart: unless-stopped
     networks:
       - media-net
-      
-  glance:
-    image: glanceapp/glance:latest
-    container_name: glance
+       
+    homarr:
+    image: ghcr.io/ajnart/homarr:latest
+    container_name: homarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-    ports:
-      - 3030:8080
     volumes:
-      - /mnt/media/config/glance:/app/config
-      - /mnt/media/config/icons:/app/public/icons
+      - /mnt/media/config/homarr:/app/data/configs
+      - /var/run/docker.sock:/var/run/docker.sock  # optioneel, maar handig
+    ports:
+      - 7575:7575
     restart: unless-stopped
     networks:
       - media-net
-  
   
 networks:
   media-net:
