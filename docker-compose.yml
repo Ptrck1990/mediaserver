@@ -213,8 +213,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     networks:
-      - media-net
-       
+      - media-net 
+      
     homarr:
     image: ghcr.io/ajnart/homarr:latest
     container_name: homarr
